@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:tabView>
+            <p:tab title="Form">
+
+                <h:form>
+                    <p:growl for="growl-messages" id="growl" sticky="true" showDetail="true"/>
+                    <h:panelGrid columns="5">
+                        <p:spinner id="numberA" value="#{bean.numberA}" >
+                            <!--<p:ajax immediate="true"></p:ajax>-->
+                        </p:spinner>
+                        <h:outputText value="+" />
+                        <p:spinner id="numberB" value="#{bean.numberB}" >
+                            <!--                            <p:ajax immediate="true"></p:ajax>-->
+                        </p:spinner>
+                        <p:commandButton id="commandButton" value="Calculate" onclick="submit" action="#{bean.add}" update="result date growl"  ajax="true"/> 
+                        <h:outputText id="result" value="= #{bean.result}" />
+                        <h:outputText id="date" value="#{bean.currentDate}" />
+                        
+                    </h:panelGrid>
+
+                </h:form>
+            </p:tab>
+            <p:tab title="Table">
+                <p:dataTable value="#{bean.students}" var="student" paginator="true" rows="3">
+                    <p:column headerText="First Name" >
+                        <h:outputText value="#{student.firstName}"/>
+                    </p:column>
+                    <p:column headerText="Last Name" sortBy="#{student.lastName}">
+                        <h:outputText value="#{student.lastName}"/>
+                    </p:column>
+                    <p:column headerText="Grade average" sortBy="#{student.average}">
+                        <h:outputText value="#{student.average}"/>
+                    </p:column>
+
+                </p:dataTable>
+            </p:tab>
+            <p:tab title="Chart">
+                <p:chart type="line" model="#{bean.degreeModel}" widgetVar="chart"/>
+                <p:commandButton type="button" value="Reset zoom" onclick="PF('chart').resetZoom()"/>
+            </p:tab>
+        </p:tabView>
+
+    </h:body>
+</html>
+

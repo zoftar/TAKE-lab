@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.backing;
+package com.mycompany.primefaces;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Date;
 import com.mycompany.primefaces.Student;
 import javax.annotation.ManagedBean;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.inject.Named;
@@ -27,8 +28,8 @@ import org.primefaces.model.chart.LineChartSeries;
  */
 @Named(value = "bean")
 @ManagedBean
-@ApplicationScoped
-public class BackingBean {
+@RequestScoped
+public class Bean {
     
     private int numberA;
     private int numberB;
@@ -40,7 +41,7 @@ public class BackingBean {
     /**
      * Creates a new instance of BackingBean
      */
-    public BackingBean() {
+    public Bean() {
         createLineChartModel();
         this.students = new ArrayList<>(Arrays.asList(
                 new Student("Hermione", "Granger", 5.00), 

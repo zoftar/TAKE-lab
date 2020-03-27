@@ -11,6 +11,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.inject.Inject;
+import javax.validation.constraints.Size;
 import req.entities.Request;
 import req.facade.RequestFacadeLocal;
 
@@ -25,6 +26,7 @@ public class RequestsList {
     @Inject
     private RequestFacadeLocal requestFacade;
     
+    @Size(min = 3, max=60, message="{request.size}")
     private String newRequest;
     
     private HtmlDataTable requestsDataTable;

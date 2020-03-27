@@ -11,6 +11,7 @@
                 <h:outputText value="New request" />
                 <h:inputText id="newReqInputText" value="#{requestsList.newRequest}"/>
                 <h:commandButton value="Add" action="#{requestsList.addRequest}"/>
+                <h:message for="newReqInputText" style="color: red"/>
                 <h:dataTable value="#{requestsList.allRequests}" var="item" border="1" binding="#{requestsList.requestsDataTable}">
                     <h:column>
                         <f:facet name="header">
@@ -34,7 +35,7 @@
                         <f:facet name="header">
                             <h:outputText value="Remove" />
                         </f:facet>
-                        <h:commandButton value="Remove" action="#{requestsList.deleteRequest}"/>
+                        <h:commandButton value="Remove" action="#{requestsList.deleteRequest}" onclick="submit()" immediate="true"/>
                     </h:column>
                 </h:dataTable>
             </h:form>

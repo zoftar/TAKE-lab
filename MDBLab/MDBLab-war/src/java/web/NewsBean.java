@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
 import javax.jms.ObjectMessage;
+import javax.jms.TextMessage;
 
 /**
  *
@@ -43,11 +44,8 @@ public class NewsBean {
     
     void sendNewsItem(String heading, String body) {
         try {
-            ObjectMessage message = context.createObjectMessage();
-            NewsItem e = new NewsItem();
-            e.setHeading(heading);
-            e.setBody(body);
-            message.setObject(e);
+            TextMessage message = context.createTextMessage();
+            message.setText(heading+'|'+body);
             context.createProducer().send(queue, message);
         } catch (JMSException ex) {
             ex.printStackTrace();

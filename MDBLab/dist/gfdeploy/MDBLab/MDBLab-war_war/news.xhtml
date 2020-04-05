@@ -8,9 +8,13 @@
     </h:head>
     <h:body>
         <h:form>
+            <h:message for="headingInputText"/>
             <h:panelGrid columns="2">
+                
                 <h:outputText value="Heading:" />
-                <h:inputText id="headingInputText" value="#{newsBean.headingText}"/>
+                <h:inputText id="headingInputText" value="#{newsBean.headingText}">
+                    <f:validateRegex pattern="[^\\|]*"/>
+                </h:inputText>
                 <h:outputText value="Body:"/>
                 <h:inputText id="bodyInputText" value="#{newsBean.bodyText}"/>
                 <h:commandButton id="submitButton" value="Submit" action="#{newsBean.submitNews()}"/>

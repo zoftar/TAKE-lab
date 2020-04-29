@@ -10,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -58,5 +59,12 @@ public class BookingController {
             }
         }
         return view;
+    }
+
+    @PostMapping(value="/delete")
+    public String delete(@RequestParam Long id, Model model) {
+        this.bookingRepository.deleteById(id);
+        model.addAttribute("bookings", bookingRepository.findAll());
+        return "redirect:/bookings";
     }
 }

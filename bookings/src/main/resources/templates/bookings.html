@@ -5,7 +5,7 @@
     <title>Bookings</title>
 </head>
 <body>
-<form th:object="${booking}" method="post">
+<form action="" th:object="${booking}" method="post">
     <label>Last Name</label>
     <input type="text" th:field="*{lastName}" required/>
     <label>First Name</label>
@@ -33,6 +33,7 @@
         <th>Number of guests</th>
         <th>Apartment</th>
         <th>Apartment capacity</th>
+        <th>Delete</th>
     </tr>
     </thead>
     <tbody>
@@ -46,6 +47,10 @@
         <td th:text="${b.numGuests}"></td>
         <td th:text="${b.apartment.name}"></td>
         <td th:text="${b.apartment.capacity}"></td>
+        <td><form th:action="@{bookings/delete}" method="post">
+            <input type="hidden" name="id" th:value="${b.id}"/>
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </form></td>
     </tr>
     </tbody>
 </table>

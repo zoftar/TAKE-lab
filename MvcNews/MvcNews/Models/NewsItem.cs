@@ -17,5 +17,8 @@ namespace MvcNews.Models
         [Required]
         [StringLength(140, MinimumLength = 5)]
         public string Text { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

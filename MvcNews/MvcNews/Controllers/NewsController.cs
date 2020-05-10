@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcNews.Data;
@@ -57,7 +58,7 @@ namespace MvcNews.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TimeStamp,Text")] NewsItem newsItem)
+        public async Task<IActionResult> Create([Bind("Id,TimeStamp,Text,RowVersion")] NewsItem newsItem)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +112,8 @@ namespace MvcNews.Controllers
                     }
                     else
                     {
-                        throw;
+                        ModelState.AddModelError("", "The data you're trying to edit has been modified or deleted by another user");
+                        return View();
                     }
                 }
                 return RedirectToAction(nameof(Index));

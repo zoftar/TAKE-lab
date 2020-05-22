@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#calc").click(function () {
+                var x = $("#x").val();
+                var y = $("#y").val();
+                x && y && $.ajax({
+                    type: "GET",
+                    data: { "x": x, "y": y },
+                    url: '/api/math',
+                    success: result => {
+                        $('#sum').text(result.sum);
+                        $('#difference').text(result.difference);
+                        $('#product').text(result.product);
+                        $('#quotient').text(result.quotient);
+
+                    }
+                }
+                );
+            });
+         });
+    </script>
+    <div>
+        <h1>Calculations</h1>
+        <form>
+            x = <input type="text" id="x" />
+            y = <input type="text" id="y" />
+            <input type="button" id="calc" value="Calculate" />
+        </form>
+        x + y = <span id="sum"></span><br />
+        x - y = <span id="difference"></span><br />
+        x * y = <span id="product"></span><br />
+        x / y = <span id="quotient"></span><br />
+    </div>
+</body>
+</html>

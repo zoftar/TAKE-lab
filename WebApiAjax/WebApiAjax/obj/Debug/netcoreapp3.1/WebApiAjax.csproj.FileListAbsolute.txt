@@ -91,3 +91,4 @@ C:\Dev\Uni\TAKE\WebApiAjax\WebApiAjax\obj\Debug\netcoreapp3.1\WebApiAjax.csproj.
 C:\Dev\Uni\TAKE\WebApiAjax\WebApiAjax\obj\Debug\netcoreapp3.1\WebApiAjax.dll
 C:\Dev\Uni\TAKE\WebApiAjax\WebApiAjax\obj\Debug\netcoreapp3.1\WebApiAjax.pdb
 C:\Dev\Uni\TAKE\WebApiAjax\WebApiAjax\obj\Debug\netcoreapp3.1\WebApiAjax.genruntimeconfig.cache
+C:\Dev\Uni\TAKE\WebApiAjax\WebApiAjax\obj\Debug\netcoreapp3.1\WebApiAjax.csprojAssemblyReference.cache

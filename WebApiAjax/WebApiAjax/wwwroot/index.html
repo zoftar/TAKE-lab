@@ -28,14 +28,46 @@
                 }
                 );
             });
-         });
+
+            
+            function calc(e) {
+                e.preventDefault();
+                const x = document.getElementById("x").value;
+                const y = document.getElementById("y").value;
+                const request = new XMLHttpRequest();
+                request.open('GET', `/api/math?x=${x}&y=${y}`, true);
+                request.setRequestHeader("Content-Type", "application/json");
+                request.send();
+                request.onload = function () {
+                    if (status === 200) {
+                        const result = JSON.parse(response);
+                        document.getElementById('sum').text(result.sum);
+                        document.getElementById('difference').text(result.difference);
+                        document.getElementById('product').text(result.product);
+                        document.getElementById('quotient').text(result.quotient);
+                    }
+                }
+
+
+            }
+            document.getElementById("vanilla-calc").addEventListener("click", calc);
+
+
+        });
+
+        
+
+        //document.getElementById("vanilla-calc").addEventListener(calc);
+        
+
     </script>
     <div>
         <h1>Calculations</h1>
-        <form>
+        <form id="form">
             x = <input type="text" id="x" />
             y = <input type="text" id="y" />
-            <input type="button" id="calc" value="Calculate" />
+            <input type="button" id="calc" value="Call API (jQuery)" />
+            <input type="button" id="vanilla-calc" value="Call API (vanilla JS)" />
         </form>
         x + y = <span id="sum"></span><br />
         x - y = <span id="difference"></span><br />

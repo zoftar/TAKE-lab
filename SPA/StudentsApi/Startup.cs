@@ -29,6 +29,7 @@ namespace StudentsApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<StudentContext>(opt => opt.UseInMemoryDatabase("StudentList"));
+            services.AddCors();
             services.AddControllers();
         }
 
@@ -41,6 +42,10 @@ namespace StudentsApi
             }
 
             //app.UseHttpsRedirection();
+            app.UseCors(options =>
+                options.WithOrigins("http://localhost:4200")
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseRouting();
 
